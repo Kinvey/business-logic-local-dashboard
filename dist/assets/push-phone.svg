@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.4 (8053) - http://www.bohemiancoding.com/sketch -->
+    <title>push-phone</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="push-phone" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-26" fill="#D8D8D8" sketch:type="MSShapeGroup" x="234.695652" y="50.0049751" width="43.6086957" height="4.99004975" rx="12"></rect>
+            <circle id="Oval-1" stroke="#979797" stroke-width="3" sketch:type="MSShapeGroup" cx="256" cy="462" r="19"></circle>
+            <path d="M131,34.9983851 L131,478.001615 C131,487.389212 138.615963,495 148.004317,495 L363.995683,495 C373.388134,495 381,487.394666 381,478.001615 L381,34.9983851 C381,25.6107879 373.384037,18 363.995683,18 L148.004317,18 C138.611866,18 131,25.6053344 131,34.9983851 Z M136,34.9983851 L136,478.001615 C136,484.62814 141.37774,490 148.004317,490 L363.995683,490 C370.625484,490 376,484.634465 376,478.001615 L376,34.9983851 C376,28.37186 370.62226,23 363.995683,23 L148.004317,23 C141.374516,23 136,28.3655349 136,34.9983851 Z" id="Rectangle-24" fill="#979797" sketch:type="MSShapeGroup"></path>
+            <path d="M153,94.994862 L153,418.005138 C153,426.287425 159.720263,433 168.008767,433 L344.991233,433 C353.276309,433 360,426.279988 360,418.005138 L360,94.994862 C360,86.7125752 353.279737,80 344.991233,80 L168.008767,80 C159.723691,80 153,86.7200124 153,94.994862 Z M156,94.994862 L156,418.005138 C156,424.629717 161.376264,430 168.008767,430 L344.991233,430 C351.623492,430 357,424.619098 357,418.005138 L357,94.994862 C357,88.3702826 351.623736,83 344.991233,83 L168.008767,83 C161.376508,83 156,88.3809018 156,94.994862 Z" id="Rectangle-25" fill="#979797" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
