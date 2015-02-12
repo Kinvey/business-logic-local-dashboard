@@ -1,0 +1,185 @@
+<div class="row">
+  <div class="col-md-8 header">
+    <h1>Data store</h1>
+    <br>
+    <div class="alert alert-warning">Warning: these collections are local and in-memory. Data stored in them <i><b>will be lost</b></i> whenever the container is restarted.</div>
+    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">Import JSON data</div>
+      <div class="panel-body">
+        <p>
+          By default, data will be imported to a collection based on the uploaded filename. That is, if you upload a file called <b>user.json</b>, data contained within the file will be imported into the <b>user</b> collection. If more than one file is selected, each file will be imported into a collection corresponding to its name (when uploading 'user.json' and 'books.json', data will be imported into collections named 'user' and 'books' respectively).
+        </p>
+        <p>
+          Alternatively, you may manually enter a collection name into which data will be imported. In this case, the name of the uploaded file(s) will be ignored. If more than one file is selected, the contents of all files will be imported into the single collection whose name is entered.
+        </p>
+        {{radio-button name=importType value="byFilename"}} Choose collection(s) based on filename(s) <b><i>- recommended</i></b>
+        <br>
+        {{radio-button name=importType value="manual"}} Import into single collection. Name:&nbsp;
+        {{input disabled=importTypeIsFilename value=importIntoCollectionName}}
+        <br><br>
+        {{file-upload files=files}}
+        <button type="button" class="btn btn-primary pull-right" {{action 'import'}} {{bind-attr disabled="noFilesSelected"}}>Import JSON from selected file(s)</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">Export JSON data</div>
+      <div class="panel-body">
+        <p>
+          Clicking the <i>Export</i> button below will generate a zip file containing a JSON file for each one of your local collections. Each file, named <i>your-collection-name.json</i>, will contain an array of JSON objects.
+        </p>
+        <a class="btn btn-primary pull-right" {{bind-attr href="exportURL"}}>Export data from all collections</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">Collection access</div>
+      <div class="panel-body">
+        <p>
+          Select a collection from the dropdown (or create a new one by pressing the + button). Then, you may export the data contained within that collection into a JSON file, or execute commands against your collection's data.
+        </p>
+        <br>
+        <div class="btn-group">
+          <div class="btn-group">
+            <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Choose collection <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            {{#each collection in userAccessibleCollections}}
+              <li><a {{action 'selectCollection' collection.name}} {{bind-attr id=collection.name}}>{{collection.name}}</a></li>
+            {{/each}}
+            </ul>
+          </div>
+          <a class="btn btn-default" data-toggle="modal" data-target="#createCollectionModal" title="Create a new collection" {{action 'showCreateCollectionModal'}}>+</a>
+        </div>
+        <div class="pull-right">
+          <a class="btn btn-primary" title="Export JSON data out of the selected collection" {{bind-attr disabled="noCollectionSelected" href="selectedCollectionExportURL"}}>Export data from this collection</a>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="btn-group">
+              <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#" {{bind-attr disabled="noCollectionSelected"}}>Command <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              {{#each command in supportedCommands}}
+                <li><a {{action 'selectCommand' command}} id="command-{{command}}">{{command}}</a></li>
+              {{/each}}
+              </ul>
+            </div>
+          </div>
+          {{#if selectedCommand}}
+            <div class="col-md-2">
+              {{#if selectedCommandOptions}}
+                <a class="btn btn-default pull-right" {{action 'showOptions'}}>Options</a>
+              {{/if}}
+            </div>
+            {{#if showQueryInput}}
+            <div class="col-md-8">
+              <div class="input-group">
+                {{input type="text" placeholder="Enter mongo query..." classBinding=":form-control" value=searchQueryText enter='submitCommand'}}
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" title="Copy command" data-toggle="modal" data-target="#showCommandCodeModal" {{action 'copyCommand'}} {{bind-attr disabled="noCollectionSelected"}}>
+                    <span class="glyphicon glyphicon-copy"></span>
+                  </button>
+                </span>
+              </div>
+              {{#if jsonError}}
+                <span class="help-block"><code>{{jsonError}}</code></span>
+              {{/if}}
+            </div>
+            {{else}}
+              <button class="btn btn-default pull-right" type="button" title="Copy command" data-toggle="modal" data-target="#showCommandCodeModal" {{action 'copyCommand'}} {{bind-attr disabled="noCollectionSelected"}}>
+                <span class="glyphicon glyphicon-copy"></span>
+              </button>
+            {{/if}}
+          {{/if}}
+        </div>
+        {{#if selectedCommand}}
+          <div class="row">
+            <div class="col-md-4">
+              {{#if selectedCommandOptions}}
+                {{#if showCommandOptions}}
+                  <div class="panel panel-default options pull-right">
+                    <div class="panel-body">
+                      {{#each option in selectedCommandOptions}}
+                        {{partial option}}
+                      {{/each}}
+                    </div>
+                  </div>
+                {{/if}}
+              {{/if}}
+            </div>
+            <div class="col-md-8">
+              {{#if showJSONInput}}
+                {{textarea placeholder="Enter JSON..." classBinding=":form-control :big-textarea" value=entityText}}
+                {{#if jsonError}}
+                  <span class="help-block"><code>{{jsonError}}</code></span>
+                {{/if}}
+              {{/if}}
+              <button class="btn btn-default pull-right" type="button" title="Execute command" {{action 'submitCommand'}} {{bind-attr disabled="noCollectionSelected"}}>Go</button>
+            </div>
+          </div>
+        {{/if}}
+        {{#if executedCommand}}
+          <div class="command-results">
+            {{#if commandResults}}
+              <pre>{{commandResults}}</pre>
+            {{else}}
+              <h4>Your query returned no results</h4>
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="createCollectionModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Create collection</h4>
+      </div>
+      <div class="modal-body">
+        {{input type="text" placeholder="Enter new collection name..." classBinding=":form-control" value=newCollectionName}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" {{action 'createCollection'}}>Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="showCommandCodeModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+          Generated command code
+          <br>
+          <small>
+            The code below has been automatically generated, and is intended to provide a quick-and-easy idea of how the command you have selected can be implemented as part of your Business Logic code. This code may need to be modified in order to integrate it into your existing code base, as well as to account for differences between running in your local test container vs. the Kinvey cloud.
+          </small>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <pre>{{commandCode}}</pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

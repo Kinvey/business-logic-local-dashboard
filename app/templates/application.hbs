@@ -1,3 +1,45 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar">
+      <ul class="nav nav-pills nav-stacked nav-sidebar">
+        <li>
+          {{#link-to "dashboard"}}
+            Dashboard
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "data"}}
+            Data
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "email"}}
+            Email
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "push"}}
+            Push
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "logs"}}
+            Logs
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10 main-content">
+      {{outlet}}
+    </div>
+  </div>
+</div>
 
-{{outlet}}
+<div id="alert-box" class="alert alert-info alert-box" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p id="alert-box-text"></p>
+</div>
+<div id="error-box" class="alert alert-danger alert-box alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <p id="error-box-text"></p>
+</div>

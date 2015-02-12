@@ -1,0 +1,106 @@
+<div class="index dashboard">
+  <div class="row">
+    <div class="col-md-8 header">
+      <h1>Dashboard</h1>
+      <h2><small>At-a-glance information about your local Kinvey BL Tester container.</small></h2>
+      <h4 class="dashboard-subtitle"><small>(This page refreshes every five seconds.)</small></h4>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <h4>
+        Container status:
+        {{#if containerStatus}}
+          <span class="label label-success">Running</span>
+        {{else}}
+          <span class="label label-danger">Not running</span>
+        {{/if}}
+      </h4>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <table class="table table-striped">
+          <tr>
+            <th>Collection name</th>
+            <th>Number of entities</th>
+          </tr>
+          {{#each collection in userAccessibleCollections}}
+            <tr>
+              <td>{{collection.name}}</td>
+              <td>{{collection.count}}</td>
+            </tr>
+          {{/each}}
+        </table>
+        {{#unless allCollectionsAreEmpty}}
+        <div class="panel-body dashboard-data">
+          {{ember-chart type='Pie' id='collectionPieChart' data=collectionChartData width=200 height=200}}
+        </div>
+        {{/unless}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Email messages</div>
+            <div class="panel-body">
+              {{#if emailMessages.length}}
+                {{#link-to "email"}}<span class="glyphicon glyphicon-envelope"></span> {{emailMessages.length}}{{/link-to}}
+                <br><br>
+                Last one at: <span class="label label-info">{{lastEmailMessageTime}}</span>
+              {{else}}
+                None
+              {{/if}}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Push notifications</div>
+            <div class="panel-body">
+              {{#if pushNotifications.length}}
+                {{#link-to "push"}}<span class="glyphicon glyphicon-phone"></span> {{pushNotifications.length}}{{/link-to}}
+                <br><br>
+                Last one at: <span class="label label-info">{{lastPushNotificationTime}}</span>
+              {{else}}
+                None
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Logs</div>
+            <div class="panel-body">
+              {{#if logs.length}}
+                {{#link-to "logs"}}<span class="glyphicon glyphicon-book"></span> {{logs.length}}{{/link-to}}
+                <br><br>
+                Last one at: <span class="label label-info">{{lastLogTime}}</span>
+              {{else}}
+                None
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Documentation</div>
+            <div class="panel-body">
+              <a href="http://devcenter.kinvey.com" target="_blank"><span class="glyphicon glyphicon-new-window"></span> Kinvey devcenter</a>
+              <br><br>
+              <a href="http://devcenter.kinvey.com/reference/business-logic/reference.html" target="_blank"><span class="glyphicon glyphicon-new-window"></span> Business Logic reference</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

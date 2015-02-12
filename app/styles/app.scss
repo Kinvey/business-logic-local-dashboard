@@ -1,0 +1,87 @@
+@import "bootstrap_imports";
+
+html, body {
+  margin: 20px;
+}
+
+.alert-box {
+  display: none;
+  position: absolute;
+  width: 50%;
+  min-height: 50px;
+  right: 25%;
+  text-align: center;
+  top: 30px;
+}
+
+.panel {
+  border-radius: 0px;
+
+  .panel-heading {
+    background-color: inherit;
+    border-bottom-style: dotted;
+  }
+}
+
+.big-textarea {
+  width: 100%;
+}
+
+.dashboard-data {
+  text-align: center;
+}
+
+.dashboard-subtitle {
+  margin-top: -10px;
+}
+
+.nav-sidebar .active {
+  background-color: $gray-lighter;
+}
+
+.messageTable {
+  margin-top: 5px;
+}
+
+#showCommandCodeModal {
+  .modal-title {
+    small {
+      margin-top: 5px;
+      display: block;
+      line-height: 140%;
+    }
+  }
+}
+
+#push-phone {
+  background-image: url('/assets/push-phone.svg');
+  background-position: left;
+  background-repeat: no-repeat;
+  width: 382px;
+  height: 480px;
+  padding-left: 156px;
+  padding-right: 25px;
+  padding-top: 83px;
+  padding-bottom: 81px;
+}
+
+.push-phone-notification {
+  background-color: #CBEEFA;
+  display: block;
+  min-height: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.command-results {
+  margin-top: 20px;
+}
+
+// workaround for bug in bootstrap-scss (https://github.com/DaftMonk/generator-angular-fullstack/issues/534)
+.input-group {
+  .form-control {
+    height: 33px;
+  }
+}

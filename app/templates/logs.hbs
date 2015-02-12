@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-8 header">
+    <h1>Logs</h1>
+    <h2>
+      <small>
+        When executing Business Logic using the offline tester, any data logged using the <a href="http://devcenter.kinvey.com/rest/reference/business-logic/reference.html#logger-module" target="_blank">logger module</a> are saved to the <code>_blLogs</code> collection. This page polls this collection every few seconds, and will display information about any logs contained within it.
+        <br><br>
+        To manually refresh the contents of the collection, click the refresh button ( <span class="glyphicon glyphicon-refresh"></span> ), and to clear all saved logs, click the clear button ( <span class="glyphicon glyphicon-trash"></span> ) below.
+      </small>
+    </h2>
+    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 header">
+    <button type="button" class="btn btn-default btn-md" title="Refresh" {{action 'refreshLogList'}}>
+      <span class="glyphicon glyphicon-refresh"></span>
+    </button>
+
+    <button type="button" class="btn btn-default btn-md" title="Clear all messages" {{action 'clearLogList'}}>
+      <span class="glyphicon glyphicon-trash"></span>
+    </button>
+    {{#if sortedLogs.length}}
+      <table class="table table-striped messageTable">
+        <tr>
+          <th>Time</th>
+          <th>Level</th>
+          <th>Message</th>
+        </tr>
+        {{#each record in sortedLogs}}
+        <tr>
+          <td>{{record.timestamp}}</td>
+          <td>{{record.level}}</td>
+          <td>{{record.message}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      <h3>No Logs</h3>
+    {{/if}}
+  </div>
+</div>

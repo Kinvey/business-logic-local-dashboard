@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'interface',
+    modulePrefix: 'business-logic-local-dashboard',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
