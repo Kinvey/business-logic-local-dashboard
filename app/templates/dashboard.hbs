@@ -37,7 +37,7 @@
         </table>
         {{#unless allCollectionsAreEmpty}}
         <div class="panel-body dashboard-data">
-          {{ember-chart type='Pie' id='collectionPieChart' data=collectionChartData width=200 height=200}}
+          {{ember-chart type='Pie' id='collectionPieChart' data=collectionChartData options=collectionChartOptions width=200 height=200}}
         </div>
         {{/unless}}
       </div>

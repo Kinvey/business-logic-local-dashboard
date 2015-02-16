@@ -22,6 +22,10 @@ var DashboardController = Ember.ObjectController.extend({
       color: this.chartColorCache[index]
     };
   }),
+  collectionChartOptions: {
+    animationEasing: "easeOutExpo",
+    animationSteps: 30
+  },
   lastPushNotificationTime: function() {
     return new Date(this.get('pushNotifications.lastObject.timestamp')).toString();
   }.property('pushNotifications.lastObject'),

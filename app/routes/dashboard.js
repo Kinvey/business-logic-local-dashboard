@@ -11,7 +11,13 @@ var DashboardRoute = Ember.Route.extend({
         contentType: 'application/json',
         data: JSON.stringify({ query: {} })
       }),
-      containerStatus: Ember.$.get('http://localhost:2845/status').then(function(){ return true }, function(){ return false })
+      containerStatus: new Ember.RSVP.Promise(function(resolve, reject) {
+        Ember.$.get('http://localhost:2845/status').then(function(){
+          resolve(true);
+        }, function(){
+          resolve(false);
+        });
+      })
     });
   },
   activate: function() {
@@ -23,6 +29,11 @@ var DashboardRoute = Ember.Route.extend({
   refreshModel: function() {
     this.refresh();
     this.refrshTimer = Ember.run.later(this, this.refreshModel, 5000);
+  },
+  actions: {
+    error: function(err, transition, route) {
+      return false
+    }
   }
 });
 
