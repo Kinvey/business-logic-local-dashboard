@@ -1,6 +1,6 @@
 {
   "name": "business-logic-local-dashboard",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "HTTP dashboard running inside your local Kinvey Business Logic container",
   "private": true,
   "directories": {
@@ -22,7 +22,7 @@
     "broccoli-sass": "0.3.3",
     "ember-cli": "0.1.7",
     "ember-cli-6to5": "0.2.1",
-    "ember-cli-chart": "1.0.6",
+    "ember-cli-chart": "1.0.7",
     "ember-cli-coffeescript": "0.7.0",
     "ember-cli-content-security-policy": "0.3.0",
     "ember-cli-dependency-checker": "0.0.7",
