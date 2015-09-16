@@ -1,20 +1,22 @@
 {
-  "name": "business-logic-local-dashboard",
+  "name"    : "business-logic-local-dashboard",
+  "private" : true,
   "dependencies": {
-    "handlebars": "~1.3.0",
-    "jquery": "^1.11.1",
+    "bootstrap-sass-official": "3.3.x",
     "ember": "1.8.1",
     "ember-data": "1.0.0-beta.12",
-    "ember-resolver": "~0.1.11",
-    "loader.js": "ember-cli/loader.js#1.0.1",
+    "ember-resolver": "0.1.x",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
     "ember-cli-test-loader": "rwjblue/ember-cli-test-loader#0.0.4",
     "ember-load-initializers": "ember-cli/ember-load-initializers#0.0.2",
     "ember-qunit": "0.1.8",
     "ember-qunit-notifications": "0.0.4",
-    "qunit": "~1.15.0",
-    "ember-uploader": "~0.3.4",
-    "randomcolor": "~0.2.0",
-    "bootstrap-sass-official": "~3.3.3"
-  }
+    "ember-uploader": "0.3.x",
+    "handlebars": "1.3.x",
+    "jquery": "1.11.x",
+    "loader.js": "ember-cli/loader.js#1.0.1",
+    "qunit": "1.15.x",
+    "randomcolor": "0.2.x"
+  },
+  "resolutions": { "ember": "1.8.1" }
 }

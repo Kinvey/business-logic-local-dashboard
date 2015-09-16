@@ -1,3 +1,19 @@
+/**
+ * Copyright 2015 Kinvey, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import Ember from "ember";
 
 var DataController = Ember.ArrayController.extend({
@@ -86,7 +102,7 @@ var DataController = Ember.ArrayController.extend({
         }
         catch (e) {
           this.set('jsonError', 'Error parsing query: ' + e);
-          return
+          return;
         }
 
         requestBody.query = jsonQuery;
@@ -99,7 +115,7 @@ var DataController = Ember.ArrayController.extend({
         }
         catch (e) {
           this.set('jsonError', 'Error parsing JSON: ' + e);
-          return
+          return;
         }
 
         requestBody.entity = entity;
@@ -151,13 +167,13 @@ var DataController = Ember.ArrayController.extend({
           }
           catch (e) {
             this.set('jsonError', 'Error parsing query: ' + e);
-            return
+            return;
           }
 
           commandText += this.get('searchQueryText');
         }
         else {
-          return
+          return;
         }
       }
 
@@ -169,7 +185,7 @@ var DataController = Ember.ArrayController.extend({
           }
           catch (e) {
             this.set('jsonError', 'Error parsing JSON: ' + e);
-            return
+            return;
           }
 
           if (this.get('showQueryInput')) {
@@ -178,7 +194,7 @@ var DataController = Ember.ArrayController.extend({
           commandText += this.get('entityText');
         }
         else {
-          return
+          return;
         }
       }
 
@@ -189,7 +205,7 @@ var DataController = Ember.ArrayController.extend({
         option = optionsArray[i];
         optionEnabled = this.get(option + 'Option');
         if (optionEnabled) {
-          optionInputValue = this.get(option + 'OptionInput')
+          optionInputValue = this.get(option + 'OptionInput');
           if (optionInputValue) {
             try {
               optionInputValue = JSON.parse(optionInputValue);
@@ -204,7 +220,7 @@ var DataController = Ember.ArrayController.extend({
       }
 
       commandText += ', ' + JSON.stringify(options);
-      commandText += ', function(err, result) {\n  if (err) {\n    // handle error here\n  }\n  else {\n    // handle success here\n  }\n  response.complete();\n});'
+      commandText += ', function(err, result) {\n  if (err) {\n    // handle error here\n  }\n  else {\n    // handle success here\n  }\n  response.complete();\n});';
 
       this.set('commandCode', commandText);
     },
@@ -219,7 +235,7 @@ var DataController = Ember.ArrayController.extend({
             return _this.showError('A collection with that name already exists');
           }
 
-          return Ember.$.ajax('http://localhost:2845/collectionAccess/' + _this.get('newCollectionName') + '/createCollection', { type: 'POST' , statusCode: { 201: function(data) {
+          return Ember.$.ajax('http://localhost:2845/collectionAccess/' + _this.get('newCollectionName') + '/createCollection', { type: 'POST' , statusCode: { 201: function() {
             Ember.$('#createCollectionModal').modal('hide');
             _this.send('refreshModel');
             _this.showSuccess('Successfully created collection ' + _this.get('newCollectionName'));
