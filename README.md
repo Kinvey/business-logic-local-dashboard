@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Kinvey/business-logic-local-dashboard.svg?branch=master)](https://travis-ci.org/Kinvey/business-logic-local-dashboard)
+
 # business-logic-local-dashboard
 
 This dashboard runs inside the mock proxy server within a local Business Logic container.
