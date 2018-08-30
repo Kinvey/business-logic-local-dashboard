@@ -27,7 +27,7 @@ Its goal is to provide a simple view into the aspects of BL that would normally 
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
 ## License
-    Copyright (c) 2015, Kinvey, Inc. All rights reserved.
+    Copyright (c) 2018, Kinvey, Inc. All rights reserved.
 
     This software is licensed to you under the Kinvey terms of service located at
     http://www.kinvey.com/terms-of-use. By downloading, accessing and/or using this
