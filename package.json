@@ -1,33 +1,38 @@
 {
-  "name"         : "business-logic-local-dashboard",
-  "version"      : "0.1.0",
-  "description"  : "HTTP dashboard running inside your local Kinvey Business Logic container",
-  "private"      : true,
-  "homepage"     : "http://www.kinvey.com",
-  "bugs"         : "https://github.com/Kinvey/business-logic-local-dashboard/issues",
-  "license"      : "Apache-2.0",
-  "author"       : "Kinvey, Inc.",
-  "contributors" : [
+  "name": "business-logic-local-dashboard",
+  "version": "0.1.0",
+  "description": "HTTP dashboard running inside your local Kinvey Business Logic container",
+  "private": true,
+  "homepage": "http://www.kinvey.com",
+  "bugs": "https://github.com/Kinvey/business-logic-local-dashboard/issues",
+  "license": "Apache-2.0",
+  "author": "Kinvey, Inc.",
+  "contributors": [
     "Gal Niv <galniv@kinvey.com>",
     "Mark van Seventer <mark@kinvey.com>"
   ],
-  "directories" : { "test": "tests" },
-  "repository"  : { "type": "git", "url": "Kinvey/business-logic-local-dashboard" },
-  "scripts"     : {
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Kinvey/business-logic-local-dashboard"
+  },
+  "scripts": {
     "pretest": "npm run lint",
     "lint": "./node_modules/.bin/eslint config app test *.js",
-    "start" : "ember server",
-    "build" : "ember build",
-    "test"  : "npm run test-unit && npm run test-integration",
+    "start": "ember server",
+    "build": "ember build",
+    "test": "npm run test-unit && npm run test-integration",
     "test-unit": "ember test",
     "test-integration": "echo \"No integration tests available for the moment\"",
-    "prepublish"       : "npm run prepublish:bower && npm run prepublish:build",
-    "prepublish:bower" : "./node_modules/.bin/bower install",
-    "prepublish:build" : "./node_modules/.bin/ember build --environment='production'",
+    "prepublish": "npm run prepublish:bower && npm run prepublish:build",
+    "prepublish:bower": "./node_modules/.bin/bower install",
+    "prepublish:build": "./node_modules/.bin/ember build --environment='production'",
     "test-npm-security": "npm audit"
   },
-  "dependencies"    : { },
-  "devDependencies" : {
+  "dependencies": {},
+  "devDependencies": {
     "bower": "1.5.x",
     "broccoli-asset-rev": "2.2.x",
     "broccoli-ember-hbs-template-compiler": "1.7.x",
@@ -44,10 +49,12 @@
     "ember-data": "1.0.0-beta.12",
     "ember-export-application-global": "1.0.x",
     "eslint": "5.0.1",
-    "eslint-config-kinvey-platform": "kinvey/eslint-kinvey-platform#v0.1.1",
+    "eslint-config-kinvey-platform": "kinvey/eslint-kinvey-platform#0.1.2",
     "eslint-plugin-import": "2.13.0",
     "express": "4.13.x",
     "glob": "4.5.x"
   },
-  "engines": { "node": ">= 0.10.0" }
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
