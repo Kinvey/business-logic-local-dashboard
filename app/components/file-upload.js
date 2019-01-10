@@ -19,4 +19,4 @@ const FileUploadComponent = EmberUploader.FileField.extend({
   multiple: 'multiple'
 });
 
-export default FileUploadComponent;
+module.exports = FileUploadComponent;

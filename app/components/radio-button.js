@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const RadioButtonComponent = Ember.Component.extend({
   tagName: 'input',
@@ -32,4 +32,4 @@ const RadioButtonComponent = Ember.Component.extend({
   }
 });
 
-export default RadioButtonComponent;
+module.exports = RadioButtonComponent;

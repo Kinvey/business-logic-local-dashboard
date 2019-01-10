@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
-import config from './config/environment';
+const Ember = require('ember');
+const config = require('./config/environment');
 
 const Router = Ember.Router.extend({
   location: config.locationType
@@ -30,4 +30,4 @@ Router.map(function () {
   this.resource('logs', { path: '/logs' });
 });
 
-export default Router;
+module.exports = Router;

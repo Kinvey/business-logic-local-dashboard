@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const DashboardRoute = Ember.Route.extend({
   model() {
@@ -53,4 +53,4 @@ const DashboardRoute = Ember.Route.extend({
   }
 });
 
-export default DashboardRoute;
+module.exports = DashboardRoute;

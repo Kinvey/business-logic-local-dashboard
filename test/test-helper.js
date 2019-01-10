@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-import resolver from './helpers/resolver';
-import {
-  setResolver
-} from 'ember-qunit';
+const resolver = require('./helpers/resolver');
+const { setResolver } = require('ember-qunit');
 
 setResolver(resolver);
 

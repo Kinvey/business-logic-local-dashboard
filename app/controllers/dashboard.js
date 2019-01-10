@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const DashboardController = Ember.ObjectController.extend({
   chartColorCache: [],
@@ -51,4 +51,4 @@ const DashboardController = Ember.ObjectController.extend({
   }.property('logs.lastObject')
 });
 
-export default DashboardController;
+module.exports = DashboardController;

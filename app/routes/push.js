@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
-const runLater = function (context, id) {
+const runLater = (context, id) => {
   Ember.run.later(context, () => {
     Ember.$(`#push-${id}`).remove();
   }, 2000);
@@ -28,7 +28,7 @@ const PushRoute = Ember.Route.extend({
     return Ember.$.get('http://localhost:2845/push').then((data) => {
       if (data && data.length > 0) {
         let message;
-        for (let i = data.length - 1; i >= 0; i--) {
+        for (let i = data.length - 1; i >= 0; i -= 1) {
           message = data[i];
           if (!_this.lastNotificationTime || _this.lastNotificationTime < message.timestamp) {
             Ember.$('#push-phone').append(`<span class="push-phone-notification" id="push-${message._id}">${message.content}</span>`);
@@ -78,4 +78,4 @@ const PushRoute = Ember.Route.extend({
   }
 });
 
-export default PushRoute;
+module.exports = PushRoute;

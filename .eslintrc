@@ -1,3 +1,9 @@
 {
+    "globals": {
+        "EmberUploader": false,
+        "QUnit" : false,
+        "document" : false,
+        "randomColor" : false
+    },
     "extends": "kinvey-platform"
 }

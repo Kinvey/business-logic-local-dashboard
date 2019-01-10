@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
-import Application from '../../app';
-import Router from '../../router';
-import config from '../../config/environment';
+const Ember = require('ember');
+const Application = require('../../app');
+const config = require('../../config/environment');
 
-export default function startApp(attrs) {
+module.exports = function startApp(attrs) {
   let application;
 
   let attributes = Ember.merge({}, config.APP);
@@ -32,4 +31,4 @@ export default function startApp(attrs) {
   });
 
   return application;
-}
+};

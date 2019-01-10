@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import Resolver from 'ember/resolver';
-import config from '../../config/environment';
+const Resolver = require('ember/resolver');
+const config = require('../../config/environment');
 
 const resolver = Resolver.create();
 
@@ -24,4 +24,4 @@ resolver.namespace = {
   podModulePrefix: config.podModulePrefix
 };
 
-export default resolver;
+module.exports = resolver;

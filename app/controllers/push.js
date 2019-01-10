@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const PushController = Ember.ArrayController.extend({
   sortKey: ['timestamp:desc'],
   sortedNotifications: Ember.computed.sort('model', 'sortKey')
 });
 
-export default PushController;
+module.exports = PushController;

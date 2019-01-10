@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const EmailRoute = Ember.Route.extend({
   model() {
@@ -56,4 +56,4 @@ const EmailRoute = Ember.Route.extend({
   }
 });
 
-export default EmailRoute;
+module.exports = EmailRoute;

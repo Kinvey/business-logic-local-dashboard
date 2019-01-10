@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const LogsRoute = Ember.Route.extend({
   model() {
@@ -62,4 +62,4 @@ const LogsRoute = Ember.Route.extend({
   }
 });
 
-export default LogsRoute;
+module.exports = LogsRoute;

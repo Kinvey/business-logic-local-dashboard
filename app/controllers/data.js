@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const DataController = Ember.ArrayController.extend({
   importType: 'byFilename',
@@ -122,7 +122,7 @@ const DataController = Ember.ArrayController.extend({
       let option; let optionEnabled; let
         optionInputValue;
       const optionsArray = this.get('selectedCommandOptions');
-      for (let i = 0; i < optionsArray.length; i++) {
+      for (let i = 0; i < optionsArray.length; i += 1) {
         option = optionsArray[i];
         optionEnabled = this.get(`${option}Option`);
         if (optionEnabled) {
@@ -195,7 +195,7 @@ const DataController = Ember.ArrayController.extend({
         optionInputValue;
       const optionsArray = this.get('selectedCommandOptions');
       const options = {};
-      for (let i = 0; i < optionsArray.length; i++) {
+      for (let i = 0; i < optionsArray.length; i += 1) {
         option = optionsArray[i];
         optionEnabled = this.get(`${option}Option`);
         if (optionEnabled) {
@@ -246,7 +246,7 @@ const DataController = Ember.ArrayController.extend({
       }
 
       const formData = new FormData();
-      for (let i = 0; i < files.length; i++) {
+      for (let i = 0; i < files.length; i += 1) {
         formData.append(files[i].fileName, files[i]);
       }
 
@@ -280,4 +280,4 @@ const DataController = Ember.ArrayController.extend({
   }
 });
 
-export default DataController;
+module.exports = DataController;

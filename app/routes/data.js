@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import Ember from 'ember';
+const Ember = require('ember');
 
 const DataRoute = Ember.Route.extend({
   model() {
@@ -30,4 +30,4 @@ const DataRoute = Ember.Route.extend({
   }
 });
 
-export default DataRoute;
+module.exports = DataRoute;
