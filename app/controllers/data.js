@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import Ember from "ember";
+import Ember from 'ember';
 
-var DataController = Ember.ArrayController.extend({
+const DataController = Ember.ArrayController.extend({
   importType: 'byFilename',
   exportURL: 'http://localhost:2845/configuration/collectionData/export',
-  selectedCollectionExportURL: function() {
-    return this.get('exportURL') + '?collectionName=' + this.get('selectedCollection');
+  selectedCollectionExportURL: function () {
+    return `${this.get('exportURL')}?collectionName=${this.get('selectedCollection')}`;
   }.property('selectedCollection'),
   reservedCollections: ['_outgoingPushMessages', '_outgoingEmailMessages', '_blLogs'],
-  userAccessibleCollections: Ember.computed.filter('model', function(collection) {
+  userAccessibleCollections: Ember.computed.filter('model', function (collection) {
     return (this.get('reservedCollections').indexOf(collection.name) === -1);
   }),
   noCollectionSelected: Ember.computed.empty('selectedCollection'),
@@ -49,21 +49,21 @@ var DataController = Ember.ArrayController.extend({
     findOne: ['sort', 'skip', 'fields'],
     update: ['upsert', 'updateMultiple']
   },
-  selectedCommandOptions: function() {
+  selectedCommandOptions: function () {
     return this.commandOptions[this.get('selectedCommand')] || [];
   }.property('selectedCommand'),
-  showError: function(errorText) {
+  showError(errorText) {
     Ember.$('#error-box-text').html(errorText);
     Ember.$('#error-box').fadeIn(400);
   },
-  showSuccess: function(successText) {
+  showSuccess(successText) {
     Ember.$('#alert-box-text').html(successText);
     Ember.$('#alert-box').fadeIn(400);
-    Ember.run.later(this, function() {
+    Ember.run.later(this, () => {
       Ember.$('#alert-box').fadeOut(300);
     }, 5000);
   },
-  resetSelection: function() {
+  resetSelection() {
     this.set('selectedCollection', null);
     this.set('selectedCommand', null);
     this.set('executedCommand', false);
@@ -71,37 +71,36 @@ var DataController = Ember.ArrayController.extend({
     this.set('jsonError', null);
   },
   actions: {
-    selectCollection: function(collectionName) {
-      Ember.$('#' + collectionName).parents('.btn-group').find('.dropdown-toggle').html(collectionName + ' <span class="caret"></span>');
+    selectCollection(collectionName) {
+      Ember.$(`#${collectionName}`).parents('.btn-group').find('.dropdown-toggle').html(`${collectionName} <span class="caret"></span>`);
       this.set('selectedCollection', collectionName);
       this.set('executedCommand', false);
       this.set('commandResults', null);
       this.set('jsonError', null);
     },
-    selectCommand: function(command) {
-      Ember.$('#command-' + command).parents('.btn-group').find('.dropdown-toggle').html(command + ' <span class="caret"></span>');
+    selectCommand(command) {
+      Ember.$(`#command-${command}`).parents('.btn-group').find('.dropdown-toggle').html(`${command} <span class="caret"></span>`);
       this.set('selectedCommand', command);
       this.set('executedCommand', false);
       this.set('commandResults', null);
       this.set('jsonError', null);
     },
-    showOptions: function() {
+    showOptions() {
       this.set('showCommandOptions', !this.get('showCommandOptions'));
     },
-    submitCommand: function() {
+    submitCommand() {
       this.set('executedCommand', false);
       this.set('commandResults', null);
       this.set('jsonError', null);
 
-      var requestBody = { options: {} };
+      const requestBody = { options: {} };
 
       if (this.get('showQueryInput') && this.get('searchQueryText') && this.get('searchQueryText').length > 0) {
-        var jsonQuery;
+        let jsonQuery;
         try {
           jsonQuery = JSON.parse(this.get('searchQueryText'));
-        }
-        catch (e) {
-          this.set('jsonError', 'Error parsing query: ' + e);
+        } catch (e) {
+          this.set('jsonError', `Error parsing query: ${e}`);
           return;
         }
 
@@ -109,82 +108,77 @@ var DataController = Ember.ArrayController.extend({
       }
 
       if (this.get('showJSONInput') && this.get('entityText') && this.get('entityText').length > 0) {
-        var entity;
+        let entity;
         try {
           entity = JSON.parse(this.get('entityText'));
-        }
-        catch (e) {
-          this.set('jsonError', 'Error parsing JSON: ' + e);
+        } catch (e) {
+          this.set('jsonError', `Error parsing JSON: ${e}`);
           return;
         }
 
         requestBody.entity = entity;
       }
 
-      var option, optionEnabled, optionInputValue;
-      var optionsArray = this.get('selectedCommandOptions');
-      for (var i=0; i < optionsArray.length; i++) {
+      let option; let optionEnabled; let
+        optionInputValue;
+      const optionsArray = this.get('selectedCommandOptions');
+      for (let i = 0; i < optionsArray.length; i++) {
         option = optionsArray[i];
-        optionEnabled = this.get(option + 'Option');
+        optionEnabled = this.get(`${option}Option`);
         if (optionEnabled) {
-          optionInputValue = this.get(option + 'OptionInput');
+          optionInputValue = this.get(`${option}OptionInput`);
           if (optionInputValue) {
             try {
               optionInputValue = JSON.parse(optionInputValue);
-            }
-            catch (e) {}
+            } catch (e) {}
             requestBody.options[option] = optionInputValue;
-          }
-          else {
+          } else {
             requestBody.options[option] = true;
           }
         }
       }
 
-      var _this = this;
-      Ember.$.ajax('http://localhost:2845/collectionAccess/' + this.get('selectedCollection') + '/' + this.get('selectedCommand'),
+      const _this = this;
+      Ember.$.ajax(`http://localhost:2845/collectionAccess/${this.get('selectedCollection')}/${this.get('selectedCommand')}`,
         { type: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(requestBody),
-          complete: function(data) {
+          complete(data) {
             _this.set('executedCommand', true);
             _this.set('commandResults', JSON.stringify(data.responseJSON, null, 2));
           }
         });
     },
-    copyCommand: function() {
+    copyCommand() {
       this.set('executedCommand', false);
       this.set('commandResults', null);
       this.set('jsonError', null);
 
-      var commandText = 'modules.collectionAccess.collection("' + this.get('selectedCollection') + '").' + this.get('selectedCommand') + '(';
+      let commandText = `modules.collectionAccess.collection("${this.get('selectedCollection')}").${this.get('selectedCommand')}(`;
 
       if (this.get('showQueryInput')) {
         if (this.get('searchQueryText') && this.get('searchQueryText').length > 0) {
-          var jsonQuery;
+          let jsonQuery;
           try {
             jsonQuery = JSON.parse(this.get('searchQueryText'));
-          }
-          catch (e) {
-            this.set('jsonError', 'Error parsing query: ' + e);
+          } catch (e) {
+            this.set('jsonError', `Error parsing query: ${e}`);
             return;
           }
 
           commandText += this.get('searchQueryText');
-        }
-        else {
+        } else {
           return;
         }
       }
 
       if (this.get('showJSONInput')) {
         if (this.get('entityText') && this.get('entityText').length > 0) {
-          var entity;
+          let entity;
           try {
             entity = JSON.parse(this.get('entityText'));
-          }
-          catch (e) {
-            this.set('jsonError', 'Error parsing JSON: ' + e);
+          } catch (e) {
+            this.set('jsonError', `Error parsing JSON: ${e}`);
             return;
           }
 
@@ -192,78 +186,77 @@ var DataController = Ember.ArrayController.extend({
             commandText += ', ';
           }
           commandText += this.get('entityText');
-        }
-        else {
+        } else {
           return;
         }
       }
 
-      var option, optionEnabled, optionInputValue;
-      var optionsArray = this.get('selectedCommandOptions');
-      var options = {};
-      for (var i=0; i < optionsArray.length; i++) {
+      let option; let optionEnabled; let
+        optionInputValue;
+      const optionsArray = this.get('selectedCommandOptions');
+      const options = {};
+      for (let i = 0; i < optionsArray.length; i++) {
         option = optionsArray[i];
-        optionEnabled = this.get(option + 'Option');
+        optionEnabled = this.get(`${option}Option`);
         if (optionEnabled) {
-          optionInputValue = this.get(option + 'OptionInput');
+          optionInputValue = this.get(`${option}OptionInput`);
           if (optionInputValue) {
             try {
               optionInputValue = JSON.parse(optionInputValue);
-            }
-            catch (e) {}
+            } catch (e) {}
             options[option] = optionInputValue;
-          }
-          else {
+          } else {
             options[option] = true;
           }
         }
       }
 
-      commandText += ', ' + JSON.stringify(options);
+      commandText += `, ${JSON.stringify(options)}`;
       commandText += ', function(err, result) {\n  if (err) {\n    // handle error here\n  }\n  else {\n    // handle success here\n  }\n  response.complete();\n});';
 
       this.set('commandCode', commandText);
     },
-    showCreateCollectionModal: function() {
+    showCreateCollectionModal() {
       this.set('newCollectionName', null);
     },
-    createCollection: function() {
-      var _this = this;
+    createCollection() {
+      const _this = this;
       if (this.get('newCollectionName') && this.get('newCollectionName').length > 0) {
-        return Ember.$.ajax('http://localhost:2845/collectionAccess/' + _this.get('newCollectionName') + '/collectionExists', { type: 'POST' , statusCode: { 200: function(data) {
-          if (data.exists) {
-            return _this.showError('A collection with that name already exists');
-          }
+        return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/collectionExists`, { type: 'POST',
+          statusCode: { 200(data) {
+            if (data.exists) {
+              return _this.showError('A collection with that name already exists');
+            }
 
-          return Ember.$.ajax('http://localhost:2845/collectionAccess/' + _this.get('newCollectionName') + '/createCollection', { type: 'POST' , statusCode: { 201: function() {
-            Ember.$('#createCollectionModal').modal('hide');
-            _this.send('refreshModel');
-            _this.showSuccess('Successfully created collection ' + _this.get('newCollectionName'));
-          }}});
-        }}});
+            return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/createCollection`, { type: 'POST',
+              statusCode: { 201() {
+                Ember.$('#createCollectionModal').modal('hide');
+                _this.send('refreshModel');
+                _this.showSuccess(`Successfully created collection ${_this.get('newCollectionName')}`);
+              } } });
+          } } });
       }
-      else {
-        this.showError('Please enter a name for your new collection');
-      }
+
+      this.showError('Please enter a name for your new collection');
     },
-    import: function() {
-      var files = this.get('files');
+    import() {
+      const files = this.get('files');
       if (!files || files.length === 0) {
         return;
       }
 
-      var formData = new FormData();
-      for (var i = 0; i < files.length; i++) {
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
         formData.append(files[i].fileName, files[i]);
       }
 
-      var importURL = 'http://localhost:2845/configuration/collectionData/import';
+      let importURL = 'http://localhost:2845/configuration/collectionData/import';
 
       if (this.get('importType') === 'manual' && this.get('importIntoCollectionName').length > 0) {
-        importURL += '?collectionName=' + encodeURIComponent(this.get('importIntoCollectionName'));
+        importURL += `?collectionName=${encodeURIComponent(this.get('importIntoCollectionName'))}`;
       }
 
-      var _this = this;
+      const _this = this;
       return Ember.$.ajax({
         url: importURL,
         type: 'POST',
@@ -271,17 +264,17 @@ var DataController = Ember.ArrayController.extend({
         processData: false,
         data: formData,
         global: false
-      }).then(function(data) {
+      }).then((data) => {
         Ember.$('#importDataModal').modal('hide');
         _this.send('refreshModel');
-        var importInfo = 'Successfully imported data!<br><br>';
-        for (var collectionName in data) {
-          importInfo += data[collectionName].numberImported + ' entities into ' + collectionName + '<br>';
+        let importInfo = 'Successfully imported data!<br><br>';
+        for (const collectionName in data) {
+          importInfo += `${data[collectionName].numberImported} entities into ${collectionName}<br>`;
         }
         _this.showSuccess(importInfo);
-      }, function(xhr) {
+      }, (xhr) => {
         Ember.$('#importDataModal').modal('hide');
-        _this.showError('Error encountered importing data:<br>' + xhr.responseText);
+        _this.showError(`Error encountered importing data:<br>${xhr.responseText}`);
       });
     }
   }

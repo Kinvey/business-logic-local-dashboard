@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-import Ember from "ember";
+import Ember from 'ember';
 
-var DataRoute = Ember.Route.extend({
-  model: function(){
+const DataRoute = Ember.Route.extend({
+  model() {
     return Ember.$.get('http://localhost:2845/collectionAccess/collectionStats');
   },
   actions: {
-    refreshModel: function() {
+    refreshModel() {
       this.refresh();
     },
-    didTransition: function(){
+    didTransition() {
       this.controller.resetSelection();
     }
   }

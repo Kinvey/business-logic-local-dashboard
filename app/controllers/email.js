@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import Ember from "ember";
+import Ember from 'ember';
 
-var EmailController = Ember.ArrayController.extend({
+const EmailController = Ember.ArrayController.extend({
   sortKey: ['timestamp:desc', 'message.to'],
   sortedMessages: Ember.computed.sort('model', 'sortKey')
 });

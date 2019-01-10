@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import Ember from "ember";
+import Ember from 'ember';
 
-var LogsController = Ember.ArrayController.extend({
+const LogsController = Ember.ArrayController.extend({
   sortKey: ['timestampInMS:desc'],
   sortedLogs: Ember.computed.sort('model', 'sortKey')
 });
