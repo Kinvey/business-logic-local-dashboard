@@ -21,6 +21,7 @@ const Router = Ember.Router.extend({
   location: config.locationType
 });
 
+// eslint-disable-next-line array-callback-return
 Router.map(function () {
   this.resource('dashboard', { path: '/' });
   this.resource('dashboard', { path: '/dashboard' });

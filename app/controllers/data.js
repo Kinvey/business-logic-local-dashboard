@@ -130,7 +130,7 @@ const DataController = Ember.ArrayController.extend({
           if (optionInputValue) {
             try {
               optionInputValue = JSON.parse(optionInputValue);
-            } catch (e) {}
+            } catch (e) { /* empty */ }
             requestBody.options[option] = optionInputValue;
           } else {
             requestBody.options[option] = true;
@@ -158,9 +158,8 @@ const DataController = Ember.ArrayController.extend({
 
       if (this.get('showQueryInput')) {
         if (this.get('searchQueryText') && this.get('searchQueryText').length > 0) {
-          let jsonQuery;
           try {
-            jsonQuery = JSON.parse(this.get('searchQueryText'));
+            JSON.parse(this.get('searchQueryText'));
           } catch (e) {
             this.set('jsonError', `Error parsing query: ${e}`);
             return;
@@ -174,9 +173,8 @@ const DataController = Ember.ArrayController.extend({
 
       if (this.get('showJSONInput')) {
         if (this.get('entityText') && this.get('entityText').length > 0) {
-          let entity;
           try {
-            entity = JSON.parse(this.get('entityText'));
+            JSON.parse(this.get('entityText'));
           } catch (e) {
             this.set('jsonError', `Error parsing JSON: ${e}`);
             return;
@@ -203,7 +201,7 @@ const DataController = Ember.ArrayController.extend({
           if (optionInputValue) {
             try {
               optionInputValue = JSON.parse(optionInputValue);
-            } catch (e) {}
+            } catch (e) { /* empty */ }
             options[option] = optionInputValue;
           } else {
             options[option] = true;
