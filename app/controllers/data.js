@@ -189,8 +189,9 @@ const DataController = Ember.ArrayController.extend({
         }
       }
 
-      let option; let optionEnabled; let
-        optionInputValue;
+      let option;
+      let optionEnabled;
+      let optionInputValue;
       const optionsArray = this.get('selectedCommandOptions');
       const options = {};
       for (let i = 0; i < optionsArray.length; i += 1) {
@@ -220,19 +221,25 @@ const DataController = Ember.ArrayController.extend({
     createCollection() {
       const _this = this;
       if (this.get('newCollectionName') && this.get('newCollectionName').length > 0) {
-        return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/collectionExists`, { type: 'POST',
-          statusCode: { 200(data) {
-            if (data.exists) {
-              return _this.showError('A collection with that name already exists');
+        return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/collectionExists`, {
+          type: 'POST',
+          statusCode: {
+            200(data) {
+              if (data.exists) {
+                return _this.showError('A collection with that name already exists');
+              }
+              return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/createCollection`, {
+                type: 'POST',
+                statusCode: { 201() {
+                  Ember.$('#createCollectionModal').modal('hide');
+                  _this.send('refreshModel');
+                  _this.showSuccess(`Successfully created collection ${_this.get('newCollectionName')}`);
+                }
+                }
+              });
             }
-
-            return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/createCollection`, { type: 'POST',
-              statusCode: { 201() {
-                Ember.$('#createCollectionModal').modal('hide');
-                _this.send('refreshModel');
-                _this.showSuccess(`Successfully created collection ${_this.get('newCollectionName')}`);
-              } } });
-          } } });
+          }
+        });
       }
 
       this.showError('Please enter a name for your new collection');
