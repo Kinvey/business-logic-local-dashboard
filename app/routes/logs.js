@@ -62,4 +62,4 @@ const LogsRoute = Ember.Route.extend({
   }
 });
 
-module.exports = LogsRoute;
+export default LogsRoute;

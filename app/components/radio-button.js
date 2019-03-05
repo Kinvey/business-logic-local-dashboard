@@ -32,4 +32,4 @@ const RadioButtonComponent = Ember.Component.extend({
   }
 });
 
-module.exports = RadioButtonComponent;
+export default RadioButtonComponent;

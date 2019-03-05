@@ -53,4 +53,4 @@ const DashboardRoute = Ember.Route.extend({
   }
 });
 
-module.exports = DashboardRoute;
+export default DashboardRoute;

@@ -24,4 +24,4 @@ resolver.namespace = {
   podModulePrefix: config.podModulePrefix
 };
 
-module.exports = resolver;
+export default resolver;

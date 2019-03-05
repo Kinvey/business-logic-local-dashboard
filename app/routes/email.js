@@ -56,4 +56,4 @@ const EmailRoute = Ember.Route.extend({
   }
 });
 
-module.exports = EmailRoute;
+export default EmailRoute;

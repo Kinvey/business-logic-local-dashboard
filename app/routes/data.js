@@ -30,4 +30,4 @@ const DataRoute = Ember.Route.extend({
   }
 });
 
-module.exports = DataRoute;
+export default DataRoute;

@@ -31,4 +31,4 @@ Router.map(function () {
   this.resource('logs', { path: '/logs' });
 });
 
-module.exports = Router;
+export default Router;

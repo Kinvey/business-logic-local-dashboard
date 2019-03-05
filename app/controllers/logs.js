@@ -21,4 +21,4 @@ const LogsController = Ember.ArrayController.extend({
   sortedLogs: Ember.computed.sort('model', 'sortKey')
 });
 
-module.exports = LogsController;
+export default LogsController;

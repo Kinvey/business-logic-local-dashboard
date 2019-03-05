@@ -78,4 +78,4 @@ const PushRoute = Ember.Route.extend({
   }
 });
 
-module.exports = PushRoute;
+export default PushRoute;

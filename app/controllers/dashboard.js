@@ -51,4 +51,4 @@ const DashboardController = Ember.ObjectController.extend({
   }.property('logs.lastObject')
 });
 
-module.exports = DashboardController;
+export default DashboardController;

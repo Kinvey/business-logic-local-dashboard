@@ -30,4 +30,4 @@ const App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
-module.exports = App;
+export default App;

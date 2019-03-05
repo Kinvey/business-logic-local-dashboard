@@ -21,4 +21,4 @@ const EmailController = Ember.ArrayController.extend({
   sortedMessages: Ember.computed.sort('model', 'sortKey')
 });
 
-module.exports = EmailController;
+export default EmailController;

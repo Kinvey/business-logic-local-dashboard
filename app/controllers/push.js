@@ -21,4 +21,4 @@ const PushController = Ember.ArrayController.extend({
   sortedNotifications: Ember.computed.sort('model', 'sortKey')
 });
 
-module.exports = PushController;
+export default PushController;

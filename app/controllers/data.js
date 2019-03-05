@@ -285,4 +285,4 @@ const DataController = Ember.ArrayController.extend({
   }
 });
 
-module.exports = DataController;
+export default DataController;
