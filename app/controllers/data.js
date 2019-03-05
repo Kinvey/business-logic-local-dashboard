@@ -220,11 +220,7 @@ const DataController = Ember.ArrayController.extend({
     createCollection() {
       const _this = this;
       if (this.get('newCollectionName') && this.get('newCollectionName').length > 0) {
-        return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/collectionExists`, {
-          type: 'POST',
-          statusCode: {
-            200(data) {
-              ...
+        return Ember.$.ajax(`http://localhost:2845/collectionAccess/${_this.get('newCollectionName')}/collectionExists`, { type: 'POST',
           statusCode: { 200(data) {
             if (data.exists) {
               return _this.showError('A collection with that name already exists');
