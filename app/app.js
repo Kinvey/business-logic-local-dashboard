@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-// import Ember from 'ember';
-const Ember = require('ember');
-const Resolver = require('ember/resolver');
-const loadInitializers = require('ember/load-initializers');
-const config = require('./config/environment');
+import Ember from 'ember';
+import Resolver from 'ember/resolver';
+import loadInitializers from 'ember/load-initializers';
+import config from './config/environment';
 
 Ember.MODEL_FACTORY_INJECTIONS = true;
 

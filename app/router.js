@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-const Ember = require('ember');
-const config = require('./config/environment');
+import Ember from 'ember';
+import config from './config/environment';
 
 const Router = Ember.Router.extend({
   location: config.locationType

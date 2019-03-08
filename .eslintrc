@@ -6,5 +6,8 @@
         "randomColor": false,
         "FormData": false
     },
-    "extends": "kinvey-platform"
+    "extends": "kinvey-platform",
+    "rules": {
+        "import/extensions": ["off"]
+    }
 }

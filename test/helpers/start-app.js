@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-const Ember = require('ember');
-const Application = require('../../app');
-const config = require('../../config/environment');
+import Ember from 'ember';
+import Application from '../../app';
+import Router from '../../router';
+import config from '../../config/environment';
 
 module.exports = function startApp(attrs) {
   let application;
