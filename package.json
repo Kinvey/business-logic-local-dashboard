@@ -20,7 +20,7 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "lint": "./node_modules/.bin/eslint config app test *.js",
+    "lint": "./node_modules/.bin/eslint config app test *.js --color",
     "start": "ember server",
     "build": "ember build",
     "test": "npm run test-unit && npm run test-integration",
@@ -31,16 +31,16 @@
     "prepublish:build": "./node_modules/.bin/ember build --environment='production'",
     "test-npm-security": "npm audit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ember-cli": "0.1.7"
+  },
   "devDependencies": {
     "bower": "1.5.x",
     "broccoli-asset-rev": "2.2.x",
     "broccoli-ember-hbs-template-compiler": "1.7.x",
     "broccoli-sass": "0.3.3",
-    "ember-cli": "0.1.7",
     "ember-cli-6to5": "0.2.1",
     "ember-cli-chart": "1.0.7",
-    "ember-cli-coffeescript": "0.7.0",
     "ember-cli-content-security-policy": "0.3.0",
     "ember-cli-dependency-checker": "0.0.7",
     "ember-cli-ic-ajax": "0.1.1",
@@ -48,9 +48,9 @@
     "ember-cli-qunit": "0.1.2",
     "ember-data": "1.0.0-beta.12",
     "ember-export-application-global": "1.0.x",
-    "eslint": "5.0.1",
-    "eslint-config-kinvey-platform": "kinvey/eslint-kinvey-platform#0.1.2",
-    "eslint-plugin-import": "2.13.0",
+    "eslint": "5.12.0",
+    "eslint-config-kinvey-platform": "kinvey/eslint-kinvey-platform#0.1.4",
+    "eslint-plugin-import": "2.14.0",
     "express": "4.13.x",
     "glob": "4.5.x"
   },

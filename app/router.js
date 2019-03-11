@@ -17,11 +17,12 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-var Router = Ember.Router.extend({
+const Router = Ember.Router.extend({
   location: config.locationType
 });
 
-Router.map(function() {
+// eslint-disable-next-line array-callback-return
+Router.map(function () {
   this.resource('dashboard', { path: '/' });
   this.resource('dashboard', { path: '/dashboard' });
   this.resource('data', { path: '/data' });

@@ -1,3 +1,13 @@
 {
-    "extends": "kinvey-platform"
+    "globals": {
+        "EmberUploader": false,
+        "QUnit": false,
+        "document": false,
+        "randomColor": false,
+        "FormData": false
+    },
+    "extends": "kinvey-platform",
+    "rules": {
+        "import/extensions": ["off"]
+    }
 }

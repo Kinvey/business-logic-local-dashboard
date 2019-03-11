@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import Ember from "ember";
+import Ember from 'ember';
 
-var DashboardRoute = Ember.Route.extend({
-  model: function(){
+const DashboardRoute = Ember.Route.extend({
+  model() {
     return Ember.RSVP.hash({
       collectionStats: Ember.$.get('http://localhost:2845/collectionAccess/collectionStats'),
       emailMessages: Ember.$.get('http://localhost:2845/email'),
@@ -27,27 +27,27 @@ var DashboardRoute = Ember.Route.extend({
         contentType: 'application/json',
         data: JSON.stringify({ query: {} })
       }),
-      containerStatus: new Ember.RSVP.Promise(function(resolve) {
-        Ember.$.get('http://localhost:2845/status').then(function(){
+      containerStatus: new Ember.RSVP.Promise(((resolve) => {
+        Ember.$.get('http://localhost:2845/status').then(() => {
           resolve(true);
-        }, function(){
+        }, () => {
           resolve(false);
         });
-      })
+      }))
     });
   },
-  activate: function() {
+  activate() {
     this.refrshTimer = Ember.run.later(this, this.refreshModel, 5000);
   },
-  deactivate: function() {
+  deactivate() {
     Ember.run.cancel(this.refreshTimer);
   },
-  refreshModel: function() {
+  refreshModel() {
     this.refresh();
     this.refrshTimer = Ember.run.later(this, this.refreshModel, 5000);
   },
   actions: {
-    error: function() {
+    error() {
       return false;
     }
   }

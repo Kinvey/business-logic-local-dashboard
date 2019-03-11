@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var FileUploadComponent = EmberUploader.FileField.extend({
+const FileUploadComponent = EmberUploader.FileField.extend({
   attributeBindings: ['multiple'],
   multiple: 'multiple'
 });

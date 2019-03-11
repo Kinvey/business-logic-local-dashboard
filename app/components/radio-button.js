@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-import Ember from "ember";
+import Ember from 'ember';
 
-var RadioButtonComponent = Ember.Component.extend({
-    tagName: 'input',
+const RadioButtonComponent = Ember.Component.extend({
+  tagName: 'input',
 
-    attributeBindings: ['type', 'checked'],
+  attributeBindings: ['type', 'checked'],
 
-    type: 'radio',
+  type: 'radio',
 
-    checked: function () {
-        return this.get('value') === this.get('name');
-    }.property('value', 'name'),
+  checked: function () {
+    return this.get('value') === this.get('name');
+  }.property('value', 'name'),
 
-    click: function () {
-        this.set('name', this.get('value'));
-    }
+  click() {
+    this.set('name', this.get('value'));
+  }
 });
 
 export default RadioButtonComponent;
