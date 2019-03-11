@@ -30,9 +30,9 @@ const EmailRoute = Ember.Route.extend({
     },
     clearMessageList() {
       const _this = this;
-      return new Ember.RSVP.Promise(((resolve) => {
+      return new Ember.RSVP.Promise((resolve) => {
         Ember.$.ajax('http://localhost:2845/email', { type: 'DELETE', statusCode: { 200(data) { resolve(data); } } });
-      })).then(function (data) {
+      }).then(function (data) {
         if (data.removed > 0) {
           Ember.$('#alert-box').html(`Successfully deleted ${data.removed} messages`);
           Ember.$('#alert-box').fadeIn(400);

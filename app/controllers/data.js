@@ -119,8 +119,9 @@ const DataController = Ember.ArrayController.extend({
         requestBody.entity = entity;
       }
 
-      let option; let optionEnabled; let
-        optionInputValue;
+      let option;
+      let optionEnabled;
+      let optionInputValue;
       const optionsArray = this.get('selectedCommandOptions');
       for (let i = 0; i < optionsArray.length; i += 1) {
         option = optionsArray[i];

@@ -62,9 +62,9 @@ const PushRoute = Ember.Route.extend({
     },
     clearNotificationList() {
       const _this = this;
-      return new Ember.RSVP.Promise(((resolve) => {
+      return new Ember.RSVP.Promise((resolve) => {
         Ember.$.ajax('http://localhost:2845/push', { type: 'DELETE', statusCode: { 200(data) { resolve(data); } } });
-      })).then(function (data) {
+      }).then(function (data) {
         if (data.removed > 0) {
           Ember.$('#alert-box').html(`Successfully deleted ${data.removed} notifications`);
           Ember.$('#alert-box').fadeIn(400);
